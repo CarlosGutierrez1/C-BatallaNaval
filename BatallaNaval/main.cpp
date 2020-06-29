@@ -40,8 +40,8 @@ int Puntajejugador2 = 0;
 int CantidadjugadasMax = 0;
 int CantidadJugadasAct = 0;
 
-int CantidadPiezasDestruidasP1=0;
-int CantidadPiezasDestruidasP2=0;
+int CantidadPiezasDestruidasP1 = 0;
+int CantidadPiezasDestruidasP2 = 0;
 
 bool VerificarSiYaEstaOcupado(const int &Jugador, const int &randomi, const int &randomj) {
     /*
@@ -49,29 +49,29 @@ bool VerificarSiYaEstaOcupado(const int &Jugador, const int &randomi, const int 
      * hay alguna otra pieza ya colocada en el tablero
      */
     for (int i = -2; i < 3; i++) {
-        for (int j = -2; j <3; j++) {
+        for (int j = -2; j < 3; j++) {
             if (Jugador == 1) {
                 if (TableroPrincipalP1[randomi + i][randomj + j] == 'X' || TableroPrincipalP1[randomi + i][randomj + j] == 'O'
-                        || randomi>16 || randomj>16) {
+                        || randomi > 16 || randomj > 16) {
                     return true;
-                    
-                }else if(i==2 && j==2){
+
+                } else if (i == 2 && j == 2) {
                     //En caso de que se verifiquen todas las combinaciones posibles
                     //y no se encuentre ninguna pieza en el tablero se retorna false
                     //para terminar la operacion de la funcion
                     return false;
-                } 
+                }
             } else {
                 if (TableroPrincipalP2[randomi + i][randomj + j] == 'X' || TableroPrincipalP2[randomi + i][randomj + j] == 'O'
-                        || randomi>17 || randomj>17) {
+                        || randomi > 17 || randomj > 17) {
                     return true;
-                    
-                }else if(i==2 && j==2){
+
+                } else if (i == 2 && j == 2) {
                     //En caso de que se verifiquen todas las combinaciones posibles
                     //y no se encuentre ninguna pieza en el tablero se retorna false
                     //para terminar la operacion de la funcion
                     return false;
-                } 
+                }
             }
         }
     }
@@ -90,14 +90,14 @@ void RellenarP1() {
         randomj = (1 + (rand() % 17));
         //Se verifica que no hallan otras fichas en el tablero
         //Si se cumple la condicion se devuelve el ciclo
-        
-        
+
+
         if (VerificarSiYaEstaOcupado(jugador, randomi, randomj)) {
             //En caso de estar ocupada la posicion se devuelve el ciclo
             //generandose nuevos numeros random
             t = t - 1;
         } else {
-            
+
             //se inicia a colocar los barcos en el tablero
             if (t < 4) {
 
@@ -110,13 +110,13 @@ void RellenarP1() {
                             //Se cambia la X de la posicion randomi+1 y randomj+1
                             //por un O. Siendo el centro de la pieza
                             TableroPrincipalP1[randomi + 1][randomj + 1] = 'O';
-                        } 
+                        }
                     }
                 }
             } else {
                 //se continua colocando los aviones en el tablero
                 for (int y = 0; y < 3; y++) {
-                   
+
                     //ciclo para colocar x primero de forma horizontal ---> XXX
                     TableroPrincipalP1[randomi + 0][randomj + y] = 'X';
                     if (y == 1) {
@@ -160,14 +160,14 @@ void RellenarP2() {
                         TableroPrincipalP2[randomi + x][randomj + y] = 'X';
                         if (x == 1 && y == 1) {
                             TableroPrincipalP2[randomi + 1][randomj + 1] = 'O';
-                        } 
+                        }
                     }
 
                 }
             } else {
                 //se continua colocando los aviones en el tablero
                 for (int y = 0; y < 3; y++) {
-                     //ciclo para colocar x primero de forma horizontal ---> XXX
+                    //ciclo para colocar x primero de forma horizontal ---> XXX
                     TableroPrincipalP2[randomi + 0][randomj + y] = 'X';
                     if (y == 1) {
                         //luego hacia arriba y abajo en forma de cruz
@@ -175,7 +175,7 @@ void RellenarP2() {
                         TableroPrincipalP2[randomi + 1][randomj + y] = 'X';
                         TableroPrincipalP2[randomi ][randomj + y] = 'O';
 
-                    } 
+                    }
                 }
             }
         }
@@ -204,7 +204,7 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
      * Se encarga de evaluar si en las posiciones recibidas hay alguna pieza,
      * ademas de encargarse de puntajes, cantidad de jugadas
      */
-    
+
     if (numerojugador == 1) {
         int posrelativex = 0, posrelativey = 0;
         //ciclo anidado para hallar el centro "O" de la ficha
@@ -252,7 +252,7 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
                 Puntajejugador1 += 225;
                 //CantidadDePiezasDestruidas  aumenta si y solo si se da 
                 //en el centro de alguna ficha
-                CantidadPiezasDestruidasP1+=1;
+                CantidadPiezasDestruidasP1 += 1;
                 cout << " -.-.-.-.-.-.-.-. " << endl;
                 cout << " _._._._._._._._. " << endl;
                 cout << " Le dio al centro " << endl;
@@ -299,7 +299,7 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
             //se verifica si se dio en el centro del avion
             if (Scaractercentro == Scaracterobetenido) {
                 Puntajejugador1 += 300;
-                CantidadPiezasDestruidasP1+=1;
+                CantidadPiezasDestruidasP1 += 1;
                 cout << " -.-.-.-.-.-.-.-. " << endl;
                 cout << " _._._._._._._._. " << endl;
                 cout << " Le dio al centro " << endl;
@@ -332,7 +332,7 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
             }
 
         } else {
-            
+
             cout << endl;
             cout << endl;
             cout << endl;
@@ -368,8 +368,8 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
             }
         }
         //al ya tener el centro podemos saber si es un barco
-            //unicamente verificando si en la posx-1 y posy-1 hay una X
-            //esto por que los barcos tienen forma de cuadrado
+        //unicamente verificando si en la posx-1 y posy-1 hay una X
+        //esto por que los barcos tienen forma de cuadrado
         if (TableroPrincipalP1[posrelativex2 - 1][posrelativey2 - 1] == 'X') {
 
             cout << "---------------" << endl;
@@ -385,7 +385,7 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
             std::string Scaractercentro(1, caractercentro);
             char charobtenido = TableroPrincipalP1[posx][posy];
             std::string Scaracterobetenido(1, charobtenido);
-            
+
             if (Scaractercentro == Scaracterobetenido) {
                 //se verifica si se dio en el centro del barco
                 //en caso de dar en el centro de un barco se suman
@@ -393,7 +393,7 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
                 Puntajejugador2 += 225;
                 //CantidadDePiezasDestruidas  aumenta si y solo si se da 
                 //en el centro de alguna ficha
-                CantidadPiezasDestruidasP2+=1;
+                CantidadPiezasDestruidasP2 += 1;
                 cout << " -.-.-.-.-.-.-.-. " << endl;
                 cout << " _._._._._._._._. " << endl;
                 cout << " Le dio al centro " << endl;
@@ -438,9 +438,9 @@ void HacerJugada(const int &posy, const int &posx, int &numerojugador) {
             std::string Scaracterobetenido(1, charobtenido);
             //Se verifica si le dio al centro del avion
             if (Scaractercentro == Scaracterobetenido) {
-                
+
                 Puntajejugador2 += 300;
-                CantidadPiezasDestruidasP2+=1;
+                CantidadPiezasDestruidasP2 += 1;
                 cout << " -.-.-.-.-.-.-.-. " << endl;
                 cout << " _._._._._._._._. " << endl;
                 cout << " Le dio al centro " << endl;
@@ -527,7 +527,7 @@ void ProcesodeJuego() {
      * de encargarse de imprimir los 2 tableros de cada jugador
      * en el turno de cada uno
      */
-    while ((CantidadJugadasAct <= CantidadjugadasMax) && (CantidadPiezasDestruidasP1<4)&&(CantidadPiezasDestruidasP2<4)) {
+    while ((CantidadJugadasAct <= CantidadjugadasMax) && (CantidadPiezasDestruidasP1 < 4)&&(CantidadPiezasDestruidasP2 < 4)) {
         int jugador = 0;
         //Se toma la cantidaddejugadas actuales y se verifica si es par o impar
         //esto para saber si es turno del jugador 1 o 2
@@ -556,7 +556,7 @@ void ProcesodeJuego() {
             cout << endl;
 
             cout << endl;
-            
+
             //Informa de quien es el turno, ademas del puntaje que lleva
             //y la cantidad de jugadas que se han realizado en total
             cout << "Es el turno del jugador:  " << Nombrejugador1 << endl;
@@ -588,7 +588,7 @@ void ProcesodeJuego() {
             }
             cout << endl;
             cout << endl;
-            
+
             //Ciclo anidado para imprimir el tablero de jugadas del jugador 2
             for (int n = 0; n < 19; n++) {
                 for (int m = 0; m < 19; m++) {
@@ -597,7 +597,7 @@ void ProcesodeJuego() {
                 cout << endl;
 
             }
-            
+
             //Se informa de quien es el turno, ademas de mostrar
             //el puntaje del jugador 2 y la cantidad de jugadas
             //que se han realizado en total
